@@ -1,0 +1,25 @@
+version: "2.27.1"
+services:
+  client:
+    build: ./client
+    container_name: client-app
+    ports:
+      - "5173:5173"
+    volumes:
+      - /client:/app
+      - /app/node_modules  
+  server:
+    build: ./server
+    container_name: server-app-container_name
+    ports:
+      - '3000:3000' 
+    depends_on:
+      - mongodb     
+    volumes:
+      - /server:/app
+  mongodb:
+    image: mongo:latest
+    ports:
+      - '27018:27017'
+
+  
