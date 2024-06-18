@@ -7,8 +7,10 @@ import { MongoClient, Db } from 'mongodb';
       provide: 'DATABASE_CONNECTION',
       useFactory: async (): Promise<Db> => {
         try {
-          const client = await MongoClient.connect('mongodb://localhost:27018/', {
-          });
+          const client = await MongoClient.connect(
+            'mongodb://mongodb:27017/task-manager',
+            {},
+          );
           return client.db('TASK-MANAGER');
         } catch (e) {
           throw e;
